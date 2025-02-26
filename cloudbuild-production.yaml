@@ -1,22 +1,31 @@
 steps:
   - name: 'cloud-builders/docker'
-    args: ['build', '-t', 'devops-repository/$PROJECT_ID/app-devops-image:$COMMIT_SHA', '.']
-
+    args: [
+      'build',
+      '-t',
+      'us-central1-docker.pkg.dev/$PROJECT_ID/devops-repository/app-devops-image:$COMMIT_SHA',
+      '.'
+    ]
   - name: 'cloud-builders/docker'
-    args: ['push', 'devops-repository/$PROJECT_ID/app-devops-image:$COMMIT_SHA']
-
+    args: [
+      'push',
+      'us-central1-docker.pkg.dev/$PROJECT_ID/devops-repository/app-devops-image:$COMMIT_SHA'
+    ]
   - name: 'cloud-builders/gcloud'
     entrypoint: 'gcloud'
     args: [
-      'run', 'deploy', 'devops-app-production',
-      '--image', 'devops-repository/$PROJECT_ID/app-devops-image:$COMMIT_SHA',
-      '--region', 'us-central1',
-      '--platform', 'managed',
+      'run',
+      'deploy',
+      'devops-app-production',
+      '--image',
+      'us-central1-docker.pkg.dev/$PROJECT_ID/devops-repository/app-devops-image:$COMMIT_SHA',
+      '--region',
+      'us-central1',
+      '--platform',
+      'managed',
       '--allow-unauthenticated'
     ]
-
 images:
-  - 'devops-repository/$PROJECT_ID/app-devops-image:$COMMIT_SHA'
-
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/devops-repository/app-devops-image:$COMMIT_SHA'
 options:
   logging: CLOUD_LOGGING_ONLY
