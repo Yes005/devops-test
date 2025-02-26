@@ -1,17 +1,17 @@
 steps:
-  - name: 'cloud-builders/docker'
+  - name: 'gcr.io/cloud-builders/docker'
     args: [
       'build',
       '-t',
       'us-central1-docker.pkg.dev/$PROJECT_ID/devops-repository/app-devops-image:$COMMIT_SHA',
       '.'
     ]
-  - name: 'cloud-builders/docker'
+  - name: 'gcr.io/cloud-builders/docker'
     args: [
       'push',
       'us-central1-docker.pkg.dev/$PROJECT_ID/devops-repository/app-devops-image:$COMMIT_SHA'
     ]
-  - name: 'cloud-builders/gcloud'
+  - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'gcloud'
     args: [
       'run',
