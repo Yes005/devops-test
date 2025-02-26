@@ -3,7 +3,7 @@ steps:
     args: [
       'build',
       '-t',
-      'us-central1-docker.pkg.dev/$PROJECT_ID/c/app-devops-image:$COMMIT_SHA',
+      'us-central1-docker.pkg.dev/$PROJECT_ID/app-devops-image:$COMMIT_SHA',
       '.'
     ]
   - name: 'devops-repository'
