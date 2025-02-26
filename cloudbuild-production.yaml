@@ -1,12 +1,12 @@
 steps:
-  - name: 'cloud-builders/docker'
+  - name: 'devops-repository'
     args: [
       'build',
       '-t',
-      'us-central1-docker.pkg.dev/$PROJECT_ID/devops-repository/app-devops-image:$COMMIT_SHA',
+      'us-central1-docker.pkg.dev/$PROJECT_ID/c/app-devops-image:$COMMIT_SHA',
       '.'
     ]
-  - name: 'cloud-builders/docker'
+  - name: 'devops-repository'
     args: [
       'push',
       'us-central1-docker.pkg.dev/$PROJECT_ID/devops-repository/app-devops-image:$COMMIT_SHA'
